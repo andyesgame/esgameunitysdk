@@ -1,0 +1,10 @@
+{
+
+    "iosComsumables":[],
+    "ggComsumables": [ "package_2" ],
+    "iosNonComsumables": [],
+    "ggNonComsumables": [],
+    "iosSubscriptions": [ "product_3" ],
+    "ggSubscriptions" : [],
+    "webs": [ "android.test.purchased" ]
+}

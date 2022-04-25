@@ -1,0 +1,42 @@
+﻿using System;
+using UnityEngine;
+
+public class ESUserDataManager
+{
+
+    public static string getAccesstoken()
+    {
+        return PlayerPrefs.GetString("es_access_token");
+    }
+
+    public static string getRefreshtoken()
+    {
+        return PlayerPrefs.GetString("es_refresh_token");
+    }
+
+    public static void saveESUserToken(ESAuth eSAuth)
+    {
+        PlayerPrefs.SetString("es_access_token",eSAuth.access_token);
+        PlayerPrefs.SetString("es_refresh_token", eSAuth.refresh_token);
+        PlayerPrefs.Save();
+    }
+    public static void saveLastNormalUser(ESUser eSUser)
+    {
+        if(eSUser.provider!=null && !eSUser.provider.Equals("app_device")
+            && !eSUser.provider.Equals("google")&&!eSUser.provider.Equals("facebook")
+            && !eSUser.provider.Equals("apple"))
+        PlayerPrefs.SetString("es_normal_user_id", eSUser.name);
+        PlayerPrefs.Save();
+    }
+    public static string getESUserString()
+    {
+        return PlayerPrefs.GetString("es_normal_user_id");
+    }
+   
+    internal static void logOut()
+    {
+        PlayerPrefs.SetString("es_access_token", null);
+        PlayerPrefs.SetString("es_refresh_token", null);
+        PlayerPrefs.Save();
+    }
+}
