@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
+using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEditor.Android;
 using UnityEditor.Callbacks;
@@ -20,6 +21,11 @@ public class ESGameBuildPostProcessor : IPostGenerateGradleAndroidProject
 
         if (target == BuildTarget.iOS)
         {
+            string configPath = "Assets/esgconfig" + "/esg_config.json";
+            string configContent = File.ReadAllText(configPath);
+            JObject data = JObject.Parse(configContent);
+            string fbId = (string)data.GetValue("fbId");
+            string fbClientToken = (string)data.GetValue("fbClientToken");
             string gplistPath = "Assets/Plugins/iOs" + "/GoogleService-Info.plist";
             PlistDocument ggPlist = new PlistDocument();
             ggPlist.ReadFromString(File.ReadAllText(gplistPath));
@@ -40,24 +46,16 @@ public class ESGameBuildPostProcessor : IPostGenerateGradleAndroidProject
             PlistElementDict dict1 = array.AddDict();
             dict1.SetString("SKAdNetworkIdentifier", "n38lu8286q.skadnetwork");
             rootDict.SetBoolean("AppsFlyerShouldSwizzle", true);
-            /**
-             * bad way , i dont know why fb plugin does not set this property
-             */
-            if (!rootDict.values.ContainsKey("FacebookClientToken"))
-            {
-                rootDict.SetString("FacebookClientToken", fbToken);
-                Debug.Log("add FacebookClientToken " + fbToken);
-            }
-            else
-            {
-                Debug.Log("already has FacebookClientToken "+rootDict.values["FacebookClientToken"].AsString());
-            }
-            
+           
+            rootDict.SetString("FacebookAppID", fbId);
+            rootDict.SetString("FacebookClientToken", fbClientToken);
+
             if (!rootDict.values.ContainsKey("CFBundleURLTypes"))
             {
                 PlistElementArray urlType = rootDict.CreateArray("CFBundleURLTypes");
                 PlistElementDict tmp = urlType.AddDict();
                 PlistElementArray arrSchema = tmp.CreateArray("CFBundleURLSchemes");
+                arrSchema.AddString("fb"+fbId);
                 arrSchema.AddString(reserverClientId);
             }
             else
@@ -66,24 +64,38 @@ public class ESGameBuildPostProcessor : IPostGenerateGradleAndroidProject
                 PlistElementDict tmp = urlType.values[0].AsDict();
                 PlistElementArray arrSchema = tmp.values["CFBundleURLSchemes"].AsArray();
                 List<PlistElement> schemaArray = arrSchema.values;
+                Debug.Log("schemaArray "+ schemaArray.Count);
                 if (schemaArray.Count == 0)
                 {
+                    PlistElement elementFb = new PlistElementString("fb" + fbId);
+                    schemaArray.Add(elementFb);
                     PlistElement element = new PlistElementString(reserverClientId);
                     schemaArray.Add(element);
                 }
                 else
                 {
                     var size = schemaArray.Count;
-                    bool match = false;
+                    bool matchReserverClientId = false;
+                    bool matchFbId = false;
+                    string fbSchema = "fb" + fbId;
                     for (var i = 0; i < size; i++)
                     {
                         if (schemaArray[i].AsString().Equals(reserverClientId))
                         {
-                            match = true;
+                            matchReserverClientId = true;
+                        }
+                        if (schemaArray[i].AsString().Equals(fbSchema))
+                        {
+                            matchFbId = true;
                             break;
                         }
                     }
-                    if (!match)
+                    if (!matchFbId)
+                    {
+                        PlistElement element = new PlistElementString(fbSchema);
+                        schemaArray.Add(element);
+                    }
+                    if (!matchReserverClientId)
                     {
                         PlistElement element = new PlistElementString(reserverClientId);
                         schemaArray.Add(element);
@@ -108,21 +120,36 @@ public class ESGameBuildPostProcessor : IPostGenerateGradleAndroidProject
     {
         string finalPath = "";
 #if UNITY_2019_3_OR_NEWER
-        
-        string dataPath = Application.dataPath;
-        Debug.Log("content " + Application.dataPath);
-        string tmp = dataPath.Remove(dataPath.IndexOf("Assets"));
-        Debug.Log("tmp " + tmp);
-        finalPath = tmp + path.Remove(path.IndexOf("unityLibrary")) + "launcher/google-services.json";
+        if (path.Contains("gradleOut"))
+        {
+            string dataPath = Application.dataPath;
+            Debug.Log("content " + Application.dataPath);
+            string tmp = dataPath.Remove(dataPath.IndexOf("Assets"));
+            Debug.Log("tmp " + tmp);
+            finalPath = tmp + path.Remove(path.IndexOf("unityLibrary")) + "launcher/google-services.json";
+        }
+        else
+        {
+            finalPath = path.Remove(path.IndexOf("unityLibrary"))+ "launcher/google-services.json";
+        }
 #else
-        string dataPath = Application.dataPath;
-        Debug.Log("content " + Application.dataPath);
-        string tmp = dataPath.Remove(dataPath.IndexOf("Assets"));
-        Debug.Log("tmp " + tmp);
+        if (path.Contains("gradleOut"))
+        {
+            string dataPath = Application.dataPath;
+            Debug.Log("content " + Application.dataPath);
+            string tmp = dataPath.Remove(dataPath.IndexOf("Assets"));
+            Debug.Log("tmp " + tmp);
         
-        finalPath = tmp + path + "/google-services.json";
-        Debug.Log("finalPath " + finalPath);
+            finalPath = tmp + path + "/google-services.json";
+        }
+        else
+        {
+            finalPath = path.Remove(path.IndexOf("unityLibrary"))+ "/google-services.json";
+        }
+        
+        
 #endif
+        Debug.Log("finalPath " + finalPath);
         return finalPath;
     }
 
@@ -140,16 +167,51 @@ targetId = project.TargetGuidByName(PBXProject.GetUnityTargetName());
     public void OnPostGenerateGradleAndroidProject(string path)
     {
         Debug.Log("OnPostGenerateGradleAndroidProject "+path);
+        string configPath = "Assets/esgconfig" + "/esg_config.json";
+        string configContent = File.ReadAllText(configPath);
+        JObject data = JObject.Parse(configContent);
+        string fbId = (string)data.GetValue("fbId");
+        string fbClientToken = (string)data.GetValue("fbClientToken");
+        Debug.Log("fbId " + fbId + " fbClientToken " + fbClientToken);
         var androidManifest = new AndroidManifest(GetManifestPath(path));
         var metaList = androidManifest.ApplicationElement.GetElementsByTagName("meta-data");
-        foreach(XmlElement meta in metaList)
+        bool foundFbClientToken = false;
+
+        bool foundFbAppId = false;
+        foreach (XmlElement meta in metaList)
         {
             if (meta.GetAttribute("android:name").Equals("com.facebook.sdk.ApplicationId"))
             {
-                Debug.Log(meta);
+                Debug.Log("found fb id "+ meta.GetAttribute("com.facebook.sdk.ApplicationId"));
                 meta.SetAttribute("replace", "http://schemas.android.com/tools","android:value");
+                meta.SetAttribute("value", "http://schemas.android.com/apk/res/android", "fb"+fbId);
+                foundFbAppId = true;
             }
-           
+            if (meta.GetAttribute("android:name").Equals("com.facebook.sdk.ClientToken"))
+            {
+                Debug.Log("found client token "+meta.GetAttribute("com.facebook.sdk.ClientToken"));
+                meta.SetAttribute("replace", "http://schemas.android.com/tools", "android:value");
+                meta.SetAttribute("value", "http://schemas.android.com/apk/res/android", fbClientToken);
+                foundFbClientToken = true;
+            }
+
+        }
+        Debug.Log("foundFbClientToken " + foundFbClientToken);
+        if (!foundFbClientToken)
+        {
+            XmlElement meta = new AndroidXmlElement("", "meta-data","",androidManifest) ;
+            meta.SetAttribute("name", "http://schemas.android.com/apk/res/android", "com.facebook.sdk.ClientToken");
+            meta.SetAttribute("replace", "http://schemas.android.com/tools", "android:value");
+            meta.SetAttribute("value", "http://schemas.android.com/apk/res/android", fbClientToken);
+            androidManifest.ApplicationElement.AppendChild(meta);
+        }
+        if (!foundFbAppId)
+        {
+            XmlElement meta = new AndroidXmlElement("", "com.facebook.sdk.ApplicationId", "", androidManifest);
+            meta.SetAttribute("name", "http://schemas.android.com/apk/res/android", "com.facebook.sdk.ApplicationId");
+            meta.SetAttribute("replace", "http://schemas.android.com/tools", "android:value");
+            meta.SetAttribute("value", "http://schemas.android.com/apk/res/android", "fb" + fbId);
+            androidManifest.ApplicationElement.AppendChild(meta);
         }
         androidManifest.Save();
         string gpJsonPath = "Assets/Plugins/Android" + "/google-services.json";
@@ -241,5 +303,14 @@ targetId = project.TargetGuidByName(PBXProject.GetUnityTargetName());
         {
             GetActivityWithLaunchIntent().Attributes.Append(CreateAndroidAttribute("name", activityName));
         }
+    }
+    internal class AndroidXmlElement : XmlElement
+    {
+
+        public AndroidXmlElement(string prefix, string localName, string namespaceURI, XmlDocument doc) : base(prefix, localName, namespaceURI, doc)
+        {
+           
+        }
+
     }
 }

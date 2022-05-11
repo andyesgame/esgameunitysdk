@@ -27,5 +27,4 @@ public class ESGameConfig
     public string appFlyerAndroidId;
     public string appFlyerIosId;
     public string appFlyerDesktopId;
-
 }

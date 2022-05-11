@@ -17,7 +17,7 @@
             url "https://jitpack.io" // Assets/ESGameSdk/Editor/ESDependencies.xml:13
         }
         maven {
-            url (unityProjectPath + "/Assets/GeneratedLocalRepo/Firebase/m2repository") // Assets/Firebase/Editor/AppDependencies.xml:22, Assets/Firebase/Editor/MessagingDependencies.xml:20
+            url "file:////Users/esgame/work/ESG/sdk2020/Assets/GeneratedLocalRepo/Firebase/m2repository" // Assets/Firebase/Editor/AppDependencies.xml:22, Assets/Firebase/Editor/MessagingDependencies.xml:20
         }
         mavenLocal()
         jcenter()
@@ -43,8 +43,8 @@ dependencies {
     implementation 'com.android.support:customtabs:25.3.1' // Facebook.Unity.Editor.AndroidSupportLibraryResolver.addSupportLibraryDependency
     implementation 'com.android.support:design:28.0.0' // Assets/ESGameSdk/Editor/ESDependencies.xml:20
     implementation 'com.android.support:support-v4:25.3.1' // Facebook.Unity.Editor.AndroidSupportLibraryResolver.addSupportLibraryDependency
-    implementation 'com.appsflyer:af-android-sdk:6.3.2' // Assets/AppsFlyer/Editor/AppsFlyerDependencies.xml:6
-    implementation 'com.appsflyer:unity-wrapper:6.3.2' // Assets/AppsFlyer/Editor/AppsFlyerDependencies.xml:8
+    implementation 'com.appsflyer:af-android-sdk:6.5.4' // Assets/AppsFlyer/Editor/AppsFlyerDependencies.xml:6
+    implementation 'com.appsflyer:unity-wrapper:6.5.4' // Assets/AppsFlyer/Editor/AppsFlyerDependencies.xml:8
     implementation 'com.daimajia.easing:library:2.4@aar' // Assets/ESGameSdk/Editor/ESDependencies.xml:35
     implementation 'com.facebook.android:facebook-android-sdk:11.0.0' // Assets/ESGameSdk/Editor/ESDependencies.xml:28
     implementation 'com.facebook.android:facebook-applinks:[11.0, 12)' // Assets/FacebookSDK/Plugins/Editor/Dependencies.xml:6
