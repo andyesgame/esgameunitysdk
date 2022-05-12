@@ -3,12 +3,12 @@
 
 # ESGame Unity SDK !
 
-This document demonstrades ESGame SDK for IOS.
+This document demonstrades ESGame SDK for Unity.
 
 
 # Prequiresites
 
-- Xcode
+- Unity Editor 2020
 - ESGame client id
 - ESGame client secret
 - GoogleService-Info.plist file
