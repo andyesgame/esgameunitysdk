@@ -1,17 +1,17 @@
 {
     "schemaStandAlone": "",
-    "clientIdAndroid": "26",
-    "clientSecretAndroid": "pLFHu4FJ3XYxUIZPyRdSaEA8Z3JK1NqSu2AgOWQ9",
-    "clientIdIos": "8",
-    "clientSecretIos": "ttoqx2m4U3wfDV8ky6WJbw4m5iVtmLnDFH9hnNSl",
-    "fbId": "15028741533867171",
-    "fbClientToken": "dwewie",
-    "ggClientIdIos": "1008925593820-s50a7l8f49e190co2s87pcss5ris4q95.apps.googleusercontent.com",
-    "ggClientIdAndroid": "1008925593820-s50a7l8f49e190co2s87pcss5ris4q95.apps.googleusercontent.com",
-    "appFlyerKey": "XKkjuxUroDkWpjxZ2Xs7nh",
-    "appFlyerAndroidId": "vn.esgame.luckystar",
-    "appFlyerIosId": "id1542318397",
-    "appFlyerWindowId": "vtcopc",
-    "appleId": "1542157640"
+    "clientIdAndroid": "1",
+    "clientSecretAndroid": "",
+    "clientIdIos": "2",
+    "clientSecretIos": "",
+    "fbId": "",
+    "fbClientToken": "",
+    "ggClientIdIos": "",
+    "ggClientIdAndroid": "",
+    "appFlyerKey": "",
+    "appFlyerAndroidId": "",
+    "appFlyerIosId": "",
+    "appFlyerWindowId": "",
+    "appleId": ""
 
 }

@@ -1,64 +1,7 @@
+/**
+ Should replace this file
+*/
 {
-  "project_info": {
-    "project_number": "812939927546",
-    "firebase_url": "https://anhhungtamquoc-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "project_id": "anhhungtamquoc",
-    "storage_bucket": "anhhungtamquoc.appspot.com"
-  },
-  "client": [
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:812939927546:android:c1daff69e4f2c0c1f90e43",
-        "android_client_info": {
-          "package_name": "com.userjoy.sgc.vinn"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "812939927546-k2qqn5jg6ppaju34pb2npao82jvpk0co.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.userjoy.sgc.vinn",
-            "certificate_hash": "bbd8cd86ea3eec1197c45597d1f00daed73da2ef"
-          }
-        },
-        {
-          "client_id": "812939927546-mvc5nccd56siptilk5hl7cil8hdroh0u.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.userjoy.sgc.vinn",
-            "certificate_hash": "4610836c6a5e78a4b2aca154b605f65b88b1565a"
-          }
-        },
-        {
-          "client_id": "812939927546-4h3i54aa06egcthg3feohts95v2jvt6u.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyB-2cYCoB4Wvc7pcIPGS9uagyolYNdPm9s"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "812939927546-4h3i54aa06egcthg3feohts95v2jvt6u.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "812939927546-2arjg73svbqflio9ujgihi3kvujsqh33.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "vn.esgame.ahtq",
-                "app_store_id": "1551270810"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ],
+    
   "configuration_version": "1"
 }

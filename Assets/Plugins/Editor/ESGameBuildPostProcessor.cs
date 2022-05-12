@@ -15,7 +15,7 @@ public class ESGameBuildPostProcessor : IPostGenerateGradleAndroidProject
     public static string fbToken = "";
     private static PBXProject _project;
 
-    [PostProcessBuildAttribute]
+    [PostProcessBuildAttribute(9999) ]
     public static void OnPostprocessBuildAppsflyer(BuildTarget target, string pathToBuiltProject)
     {
 
