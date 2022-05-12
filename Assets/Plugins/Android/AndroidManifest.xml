@@ -18,8 +18,8 @@
         <action android:name="android.intent.action.VIEW" />
         <data android:scheme="hellokitty" android:host="payment" android:pathPattern=".*" />
         <category android:name="android.intent.category.DEFAULT" />
-        <category android:name="android.intent.category.BROWSABLE" /> /&gt;
-            </intent-filter>
+        <category android:name="android.intent.category.BROWSABLE" />
+      </intent-filter>
       <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
     </activity>
     <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="" />
