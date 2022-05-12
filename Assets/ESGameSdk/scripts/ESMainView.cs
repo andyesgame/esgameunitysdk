@@ -1,7 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
-using UnityEngine.SignInWithApple;
-using System.Text;
 using UnityEngine.UI;
 using System;
 
