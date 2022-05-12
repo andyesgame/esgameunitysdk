@@ -1,5 +1,6 @@
 
 
+
 # ESGame Unity SDK !
 
 This document demonstrades ESGame SDK for IOS.
@@ -14,15 +15,9 @@ This document demonstrades ESGame SDK for IOS.
 - Facebook id and facebook client token
 - Appsflyer development key
 # Install
-- Download the lastest esgame sdk for ios (https://github.com/andyesgame/esgamesdkiosexample/releases) and extract to your computer
-- Link ESSDK to your pod file, like this:
+- Download the lastest esgame sdk for unity (https://github.com/andyesgame/esgameunitysdk/releases) and extract to your computer
+- Import ESGame unity package to your project
 
-		pod 'ESSDK', :path => '../sdk/' 
-
-- Run :
-	
-	
-		pod install
 # Functionality
 SDK provide some functionality below:
 - ESGame normal login: use email/account and password
@@ -31,135 +26,122 @@ SDK provide some functionality below:
 - Log-in with Facebook
 - Log-in with Google
 - Apple in-app purchase
+- Google in-app billing
 - Third-party payment (should only use with non Google version)
 - Analystic ( Firebase, Facebook, Appslyer)
 
 # SDK Config
 
-## es_property.plist
+## /Assets/esgconfig/esg_config.json
+Create or modify esg_config.json and put it to  /Assets/esgconfig  folder, then asign it to config file property in ESGameSDK script inside /Assets/ESGameSdk/ESSDKScene
 ESGame has few parameters
 |Property               |Description                          |Provider                         |
 |----------------|-------------------------------|-----------------------------|
-|es_appflyer_dev_key|`Appsflyer development key`            |ESGame|
-|es_client_id|`Esgame client id`            |ESGame|
-|es_client_secret|`Esgame client secret`            |ESGame|
-|es_gg_client_id|`Google client id, we can get it from key CLIENT_ID from google info plist file with`            |ESGame|
+|schemaStandAlone|`Your app scheme (On desktop platform)`            |CP|
+|clientIdAndroid|`Esgame client id for Android`            |ESGame|
+|clientSecretAndroid|`Esgame client secret for Android`            |ESGame|
+|clientIdIos|`Esgame client id for iOS`            |ESGame|
+|clientSecretIos|`Esgame client secret for iOS`            |ESGame|
+|fbId|`Facebook client id`            |ESGame|
+|fbClientToken|`Facebook client secret`            |ESGame|
+|ggClientIdAndroid|`Google client id for Android`            |ESGame|
+|appFlyerKey|`Appsflyer development key`            |ESGame|
+|appFlyerAndroidId|`Appsflyer client id for Android`            |ESGame|
+|appFlyerIosId|`Appsflyer client id for iOS`            |ESGame|
+|appFlyerWindowId|`Appsflyer client id for Window platform`            |ESGame|
+|appleId|`Apple client id`            |ESGame|
 
-# Info.plist
-You need modify some attributes in Info.plist
-
-- Add facebook schema (format fb+ facebookId) and google resversed id (you can get it from key REVERSED_CLIENT_ID in GoogleService-Info.plist) to  CFBundleURLSchemes , for example
-		
-		<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>fb682118789108627</string>
-				<string>com.googleusercontent.apps.1034628364602-0sbkc4vbcrp2uj1cpedbfroj8f89vv51</string>
-			</array>
-		</dict>
-		</array>
-
-- Add facebook's id to FacebookAppID, for example :
-
-		<key>FacebookAppID</key>
-		<string>682118789108627</string>
-		<key>FacebookDisplayName</key>
-		<string>$(PRODUCT_NAME)</string>
-- Add Facebook application queries schemas:
-
-		<key>LSApplicationQueriesSchemes</key>
-		<array>
-		<string>fbapi</string>
-		<string>fbapi20130214</string>
-		<string>fbapi20130410</string>
-		<string>fbapi20130702</string>
-		<string>fbapi20131010</string>
-		<string>fbapi20131219</string>
-		<string>fbapi20140410</string>
-		<string>fbapi20140116</string>
-		<string>fbapi20150313</string>
-		<string>fbapi20150629</string>
-		<string>fbapi20160328</string>
-		<string>fbauth</string>
-		<string>fb-messenger-share-api</string>
-		<string>fbauth2</string>
-		<string>fbshareextension</string>
-		</array>
-- Add NSCameraUsageDescription,NSUserTrackingUsageDescription,SKAdNetworkItems:
-	
-		<key>NSCameraUsageDescription</key>
-		<string>Chúng tôi sử dụng camera để update avatar ingame và tính năng báo lỗi.</string>
-		<key>NSUserTrackingUsageDescription</key>
-		<string>$(PRODUCT_NAME) cần xin quyền AppTrackingTransparency để giúp bạn trải nghiệm trò chơi tốt hơn và chia sẻ nội dung cập nhật mới nhất thông qua quảng cáo cá nhân</string>
-		<key>SKAdNetworkItems</key>
-		<array>
-			<dict>
-				<key>SKAdNetworkIdentifier</key>
-				<string>v9wttpbfk9.skadnetwork</string>
-			</dict>
-			<dict>
-				<key>SKAdNetworkIdentifier</key>
-				<string>n38lu8286q.skadnetwork</string>
-			</dict>
-		</array>
 
 # Coding
 ## Init sdk:
-- ApplicationDelegate:
+- Create you controller script and add below lines to it:
 
-	    - (**BOOL**)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
-		[ESGameSDK  application:application 		didFinishLaunchingWithOptions:launchOptions];
-			return  YES;
-		}
-		- (void)applicationDidBecomeActive:(UIApplication *)application{
-			[ESGameSDK  applicationDidBecomeActive:application];
-		}
-		- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-			return [ESGameSDK application:application openURL:url options:options];
-		}
-		- (**BOOL**)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(**id**)annotation{
-			return [ESGameSDK application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
-		}
-- ViewController: 
-	Make Your view's controller implement SdkDelegate:
-
-		@import ESSDK;
-		@interface  ViewController : UIViewController<SdkDelegate>
-		@end
-	
-	init in viewDidLoad method:
-
-		- (void) viewDidLoad{
-			[super  viewDidLoad];
-			ESGameSDK *esgameSdk = [ESGameSDK sharedObject];
-			esgameSdk.delegate = self;
-			[esgameSdk init:self];
-		}	
+	    void Start()
+	    {
+	        Screen.orientation = ScreenOrientation.LandscapeLeft;
+	        /**
+	         * set it if you wwant open esgame auto login behavior or not
+	         */
+	        ESGameSDK.autoLogin = false;
+	        /**
+	         * Deprecated , use if you want use unity method to get device id .Usefull if you have already production mode
+	         */
+	        ESGameSDK.useAndroidUnityDeviceId = true;
+	        /**
+	        * Deprecated , use if you want use unity method to get device id .Usefull if you have already production mode
+	        */
+	        ESGameSDK.useIosUnityDeviceId = true;
+	        StartCoroutine(this.waitESSDKInit());
+	    }
+	    private IEnumerator waitESSDKInit()
+	    {
+	        yield return new WaitForEndOfFrame();
+	        if (ESGameSDK.instance != null)
+	        { 
+	            ESGameSDK.instance.loginSuccessEvent.AddListener(this.onUserSignIn);
+	            ESGameSDK.instance.loginFailureEvent.AddListener(this.onUserSignInError);
+	            ESGameSDK.instance.logOutEvent.AddListener(this.onUserSignOut);
+	            ESGameSDK.instance.billingEvent.AddListener(this.ESBillingEvent);
+	            ESGameSDK.instance.uiEvent.AddListener(this.ESUIEvent);
+	            /**
+	             * Open login behavio , if usser token is available then sdk wwil notify login success event,.
+	             * If user tojen is unavailble then sdk wil open login view
+	             */
+	            ESGameSDK.instance.login();
+	        }
+	        else
+	        {
+	            StartCoroutine(this.waitESSDKInit());
+	        }
+		    }
+		    private void ESUIEvent(bool changed)
+		    {
+		    }
+		    private void OnDestroy()
+		    {
+				ESGameSDK.instance.loginSuccessEvent.RemoveListener(this.onUserSignIn);   													ESGameSDK.instance.loginFailureEvent.RemoveListener(this.onUserSignInError);
+		      ESGameSDK.instance.logOutEvent.RemoveListener(this.onUserSignOut);
+		      ESGameSDK.instance.billingEvent.RemoveListener(this.ESBillingEvent);
+		      ESGameSDK.instance.uiEvent.RemoveListener(this.ESUIEvent);
+		    }
+		    public void onUserSignIn(ESUser eSUser)
+		    {
+		    }
+		    public void onUserSignInError(ESErrorEvent eSErrorEvent)
+		    {
+		    }
+		    public void ESBillingEvent(ESBillingResult billingResult)
+		    {
+		    }	
+		    public void onUserSignOut()
+		    {
+		    }	
 
 	Implement ESGame's callback:
 
 
 - Login success callback
 
-	  - (void)responseLogin:(BOOL)isSuccess :(nonnull NSString *)message :(NSInteger)errorCode :(nonnull User *)user 
+	  void onUserSignIn(ESUser eSUser)
 |Property               |Type                          |Description                         |
 |----------------|-------------------------------|-----------------------------|
-|isSuccess|Bool            |user login state (authorized or unauthorized)|
-|message|String            |message from server|
-|errorCode|Integer            |response code from server|
-|user|User            |User information|
+|eSUser|ESUser            |user's information|
+- Login error callback
 
+	  void onUserSignInError(ESErrorEvent event)
+|Property               |Type                          |Description                         |
+|----------------|-------------------------------|-----------------------------|
+|event|ESErrorEvent            |error's information|
 - Log-out callback
 	
-		 -(void)responseLogout
+		void onUserSignOut()
 
-- Apple inapp-purchase  callback
+- Payment  callback
 
-		-(**void**)paymentSuccess:(SKPaymentTransaction*)transaction
+		void ESBillingEvent(ESBillingResult billingResult)
 |Property               |Type                          |Description                         |
 |----------------|-------------------------------|-----------------------------|
-|transaction|SKPaymentTransaction            |Transaction's information|
+|billingResult|ESBillingResult            |Transaction's information|
 
 
 ## Command
@@ -167,15 +149,15 @@ You need modify some attributes in Info.plist
 ESGame'SDK provide some methods:
 - Log-in
 	
-	- (void)login:(UIViewController *)view
+	 ESGameSDK.instance.login()
 ESGame will open Login view if user was not login in the past, or let user login.
 - Log-out
 	
-	-(void)logout
+	ESGameSDK.instance.logOut();
 Let user log-out.
-- In-app purchase
+- In-app purchase ( Google and Applge)
 
-		- (void)buyProduct:(NSString *)productId :(NSString *)server_id :(NSString *)player_id :(NSString *)extraData :(UIViewController *)rootView
+		ESGameSDK.instance.billing(productId, serverId, playerId, extra);
 
 |Property               |Type                          |Description                         |
 |----------------|-------------------------------|-----------------------------|
@@ -183,15 +165,24 @@ Let user log-out.
 |server_id|String            |Server' identifier|
 |player_id|String            |ESGame Player's identifier|
 |extra_data|String            |ESGame Transaction's information|
-|rootView|UIViewController            |root's view controller which sdk's will be display|
+- Web purchase ( Third party payment, use for non google )
 
-- Send tracking analystic event:
-	
-		-(void) trackEvent : (NSString *) eventName :(NSDictionary *) data;
+		ESGameSDK.instance.webBilling(productId, serverId, playerId, extra)
 
 |Property               |Type                          |Description                         |
 |----------------|-------------------------------|-----------------------------|
-|eventName|NSString            |event's name|
-|data|NSDictionary            |event's data|
+|productID|String            |product's identifier|
+|server_id|String            |Server' identifier|
+|player_id|String            |ESGame Player's identifier|
+|extra_data|String            |ESGame Transaction's information|
+
+- Send tracking analystic event:
+	
+		 ESGameSDK.instance.trackingEvent(eventName, eventData)
+
+|Property               |Type                          |Description                         |
+|----------------|-------------------------------|-----------------------------|
+|eventName|string            |event's name|
+|eventData|Dictionary<string, object>            |event's data|
 
   
