@@ -13,7 +13,7 @@ public class DemoScript : MonoBehaviour
     {
         Screen.orientation = ScreenOrientation.LandscapeLeft;
         /**
-         * set it if you wwant open esgame auto login behavio or not
+         * set it if you wwant open esgame auto login behavior or not
          */
         ESGameSDK.autoLogin = false;
         /**
@@ -24,17 +24,7 @@ public class DemoScript : MonoBehaviour
         * Deprecated , use if you want use unity method to get device id .Usefull if you have already production mode
         */
         ESGameSDK.useIosUnityDeviceId = true;
-        StartCoroutine(this.GetRequest());
-        if (ESGameSDK.instance == null)
-        {
-            SceneManager.LoadScene("ESSDKScene", LoadSceneMode.Additive);
-            StartCoroutine(this.waitESSDKInit());
-        }
-        else
-        {
-            StartCoroutine(this.waitESSDKInit());
-        }
-        
+        StartCoroutine(this.waitESSDKInit());
     }
 
     private IEnumerator waitESSDKInit()
@@ -59,24 +49,8 @@ public class DemoScript : MonoBehaviour
         {
             StartCoroutine(this.waitESSDKInit());
         }
-       
     }
 
-    IEnumerator GetRequest()
-    {
-        using(UnityWebRequest webRequest = UnityWebRequest.Get("https://vtco.esgame.vn/api/news"))
-        {
-            yield return webRequest.SendWebRequest();
-            if (!String.IsNullOrEmpty(webRequest.error))
-            {
-                Debug.LogError("ressponsesssss errror "+webRequest.error);
-            }
-            else
-            {
-                Debug.Log("ressponsesssss "+webRequest.downloadHandler.text);
-            }
-        }
-    }
 
     private void ESUIEvent(bool arg0)
     {
