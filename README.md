@@ -3,7 +3,7 @@
 
 # ESGame Unity SDK !
 
-This document demonstrades ESGame SDK for IOS. It bases on ESGame android SDK (https://github.com/andyesgame/esgamesdkiosexample#readme) and ESGame iOS SDK (https://github.com/andyesgame/esgamesdkandroidexample#readme).
+This document demonstrades ESGame SDK for Unity. It bases on ESGame android SDK (https://github.com/andyesgame/esgamesdkiosexample#readme) and ESGame iOS SDK (https://github.com/andyesgame/esgamesdkandroidexample#readme).
 
 
 # Prequiresites
