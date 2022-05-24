@@ -23,6 +23,8 @@ This document demonstrades ESGame SDK for Unity. It bases on ESGame android SDK 
 		    <iosPod name="ESSDK" path="../essdkios/sdk/">
 		    </iosPod>
 		</iosPods>
+		
+ - Then run 'pod install'.
 
 # Functionality
 SDK provide some functionality below:
