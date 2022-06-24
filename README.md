@@ -3,7 +3,7 @@
 
 # ESGame Unity SDK !
 
-This document demonstrades ESGame SDK for IOS.
+This document demonstrades ESGame SDK for Unity. It bases on ESGame android SDK (https://github.com/andyesgame/esgamesdkiosexample#readme) and ESGame iOS SDK (https://github.com/andyesgame/esgamesdkandroidexample#readme).
 
 
 # Prequiresites
@@ -16,7 +16,15 @@ This document demonstrades ESGame SDK for IOS.
 - Appsflyer development key
 # Install
 - Download the lastest esgame sdk for unity (https://github.com/andyesgame/esgameunitysdk/releases) and extract to your computer
-- Import ESGame unity package to your project
+- Import ESGame unity package to your project.
+- Download ESG iOS SDK ( https://github.com/andyesgame/esgamesdkiosexample/releases) and change ipod path in /Assets/ESDependency.xml , for example :
+
+		<iosPods>
+		    <iosPod name="ESSDK" path="../essdkios/sdk/">
+		    </iosPod>
+		</iosPods>
+		
+ - Then run 'pod install'.
 
 # Functionality
 SDK provide some functionality below:
