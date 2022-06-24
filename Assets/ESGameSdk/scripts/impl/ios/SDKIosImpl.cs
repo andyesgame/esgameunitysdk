@@ -8,6 +8,8 @@ public class SDKIosImpl : ISDK
     [DllImport("__Internal")]
     private static extern void _login();
     [DllImport("__Internal")]
+    private static extern void _startInGameMain();
+    [DllImport("__Internal")]
     private static extern void _setFloatingButtonEnable(bool floatingButtonEnable);
     [DllImport("__Internal")]
     private static extern void _billing(string productId, string serverId, string playerId, string extra);
@@ -126,6 +128,14 @@ public class SDKIosImpl : ISDK
     public ESUser getCurrentUser()
     {
         return usr;
+    }
+
+    public void startInGameMain()
+    {
+        if (usr != null)
+        {
+            _startInGameMain();
+        }
     }
 
     public void onLoginSuccess(string data)

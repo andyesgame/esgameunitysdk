@@ -8,6 +8,7 @@ public interface ISDK
     void setConfig(string appsflyerDevKey,int clientId,string clientSecret,string ggId);
     void login();
     void logOut();
+    void startInGameMain();
     ESUser getCurrentUser();
     void onLoginSuccess(string data);
     void onLoginFailure(string data);

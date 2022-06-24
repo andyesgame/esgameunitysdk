@@ -500,4 +500,9 @@ public class SDKDesktopImpl : ISDK, IAppsFlyerConversionData
             showFloatingView(false);
         }
     }
+
+    public void startInGameMain()
+    {
+        //throw new NotImplementedException();
+    }
 }

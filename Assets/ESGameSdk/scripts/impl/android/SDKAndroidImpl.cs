@@ -201,5 +201,19 @@ public class SDKAndroidImpl : ISDK
             }
         }
     }
+
+    public void startInGameMain()
+    {
+        if (usr != null)
+        {
+            using (AndroidJavaClass cls_UnityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+            {
+                using (AndroidJavaObject obj_Activity = cls_UnityPlayer.GetStatic<AndroidJavaObject>("currentActivity"))
+                {
+                    obj_Activity.Call("startInGameMain");
+                }
+            }
+        }
+    }
 }
 #endif

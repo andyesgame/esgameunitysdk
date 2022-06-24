@@ -52,9 +52,9 @@ public class DemoScript : MonoBehaviour
     }
 
 
-    private void ESUIEvent(bool arg0)
+    private void ESUIEvent(bool changed)
     {
-        Debug.LogError("ESUIEvent " + arg0);
+        Debug.LogError("ESUIEvent " + changed);
     }
 
     private void OnDestroy()
@@ -64,12 +64,6 @@ public class DemoScript : MonoBehaviour
         ESGameSDK.instance.logOutEvent.RemoveListener(this.onUserSignOut);
         ESGameSDK.instance.billingEvent.RemoveListener(this.ESBillingEvent);
         ESGameSDK.instance.uiEvent.RemoveListener(this.ESUIEvent);
-    }
-
-    private void OnEnable()
-    {
-        //ESGameSDK.instance.checkSession();
-        
     }
 
     public void onUserSignIn(ESUser eSUser)

@@ -27,6 +27,9 @@ ESioPlugin *obj;
 +(void)checkSession{
     [[ESGameSDK sharedObject] login:UnityGetGLViewController()];
 }
++(void)startInGameMain{
+    [[ESGameSDK sharedObject] startInGameMain];
+}
 +(void)billing:(NSString *) productId :(NSString *)serverId :(NSString *)playerId :(NSString *)extraData {
     [[ESGameSDK sharedObject]buyProduct:productId :serverId :playerId :extraData :UnityGetGLViewController()];
 }
@@ -227,7 +230,11 @@ ESioPlugin *obj;
      return false;
  }
  void _setFloatingButtonEnable(bool floatingButtonEnable){
-     [ESioPlugin  setFloatingButtonEnable:floatingButtonEnable];
+     [ESioPlugin setFloatingButtonEnable:floatingButtonEnable];
+ }
+ 
+ void _startInGameMain(){
+     [ESioPlugin startInGameMain];
  }
  void _check(const char* url,const char* title)
      {

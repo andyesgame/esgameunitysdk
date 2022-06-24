@@ -11,6 +11,7 @@
 +(void)login;
 +(void)logout;
 +(void)checkSession;
++(void)startInGameMain;
 +(void)initProducts:(NSString *) productString;
 +(void)setDeviceManagement:(NSString *) deviceId;
 +(void)billing:(NSString *) productId :(NSString *)serverId :(NSString *)playerId :(NSString *)extraData ;

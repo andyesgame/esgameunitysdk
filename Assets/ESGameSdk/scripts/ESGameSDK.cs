@@ -189,6 +189,11 @@ public class ESGameSDK : ConfigLoader,ISDK
         sdk.login();
     }
 
+
+    public void startInGameMain() {
+        sdk.startInGameMain();
+    }
+
     public ESUser getCurrentUser()
     {
         return sdk.getCurrentUser();
