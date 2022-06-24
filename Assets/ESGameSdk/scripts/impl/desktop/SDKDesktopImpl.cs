@@ -503,6 +503,7 @@ public class SDKDesktopImpl : ISDK, IAppsFlyerConversionData
 
     public void startInGameMain()
     {
-        //throw new NotImplementedException();
+        Debug.Log("startInGameMain");
+        ESGameSDK.instance.esInGameContainer.show();
     }
 }

@@ -18,6 +18,8 @@ public class ESGameDemo : MonoBehaviour
         ESGameSDK.instance.billingEvent.AddListener(ESBillingEvent);
         ESGameSDK.instance.billingWebEvent.AddListener(ESBillingWebEvent);
         ESGameSDK.instance.uiEvent.AddListener(this.ESUIEvent);
+
+        ESGameSDK.instance.startInGameMain();
     }
 
     private void ESBillingWebEvent(ESBillingWebResult arg0)

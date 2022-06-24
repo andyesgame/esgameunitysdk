@@ -92,6 +92,7 @@ public class ESGameSDK : ConfigLoader,ISDK
     public GameObject loadingView;
     public GameObject floatingView;
     public ESContainer esGameContainer;
+    public ESInGameContainer esInGameContainer;
     public PopUpMessage messagePopUp;
 
     public ESLoginSuccessEvent loginSuccessEvent;

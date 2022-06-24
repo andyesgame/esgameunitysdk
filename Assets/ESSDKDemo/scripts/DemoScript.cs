@@ -11,6 +11,7 @@ public class DemoScript : MonoBehaviour
    
     void Start()
     {
+        Debug.Log("start ");
         Screen.orientation = ScreenOrientation.LandscapeLeft;
         /**
          * set it if you wwant open esgame auto login behavior or not
@@ -71,6 +72,7 @@ public class DemoScript : MonoBehaviour
         //Debug.LogError("Welcome User "+eSUser.id+" signIn");
         //SceneManager.LoadScene("ESGameDemo", LoadSceneMode.Single);
         ESGameSDK.instance.trackingEvent("upbtn_gold", new Dictionary<string, object>());
+        ESGameSDK.instance.startInGameMain();
     }
 
     public void onUserSignInError(ESErrorEvent eSErrorEvent)

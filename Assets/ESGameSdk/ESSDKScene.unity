@@ -13963,6 +13963,7 @@ MonoBehaviour:
   loadingView: {fileID: 6379931148953676493}
   floatingView: {fileID: 684649091}
   esGameContainer: {fileID: 6379931149198298789}
+  esInGameContainer: {fileID: 1802544205}
   messagePopUp: {fileID: 6379931148100176389}
   loginSuccessEvent:
     m_PersistentCalls:
@@ -27326,7 +27327,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 154888353}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e3489693445f415da4cf624e612dbb2, type: 3}
+  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &6379931147650995404
