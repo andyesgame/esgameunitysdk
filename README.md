@@ -193,7 +193,7 @@ Let user log-out.
 |eventName|string            |event's name|
 |eventData|Dictionary<string, object>            |event's data|
 
-- Open ESGame ingame view (in case you dont want to use our floating button, only for Android and iOs):
+- Open ESGame ingame view (in case you dont want to use our floating button):
 	
 		 ESGameSDK.instance.startInGameMain()
 
