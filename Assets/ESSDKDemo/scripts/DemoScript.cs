@@ -72,7 +72,6 @@ public class DemoScript : MonoBehaviour
         //Debug.LogError("Welcome User "+eSUser.id+" signIn");
         //SceneManager.LoadScene("ESGameDemo", LoadSceneMode.Single);
         ESGameSDK.instance.trackingEvent("upbtn_gold", new Dictionary<string, object>());
-        ESGameSDK.instance.startInGameMain();
     }
 
     public void onUserSignInError(ESErrorEvent eSErrorEvent)

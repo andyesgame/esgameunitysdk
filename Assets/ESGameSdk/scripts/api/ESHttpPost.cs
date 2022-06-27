@@ -17,13 +17,7 @@ public abstract class ESHttpPost<R,T> : ESHttp<R,T> where R: ESResponse<T>,new()
         Debug.Log("client_id " + ESGameSDK.instance.getClientId() + " client_secret " + ESGameSDK.instance.getClientSecret());
         onConfigForm(form,input);
         UnityWebRequest www = UnityWebRequest.Post(url, form);
-        onConfigRequest(www);
         return www;
-    }
-
-    protected virtual void onConfigRequest(UnityWebRequest request)
-    {
-
     }
 
     protected abstract void onConfigForm(UnityEngine.WWWForm form, object[] inputs);

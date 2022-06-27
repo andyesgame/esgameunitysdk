@@ -10,6 +10,7 @@ public class ApiConfig
 
     public static string baseUrl = "https://game-api.esgame.vn/v1/";
     public static string setting = baseUrl + "misc/settings";
+    public static string revokeAccess = baseUrl + "/auth/revoke-game-access";
     public static string login = baseUrl+"auth/login";
     public static string register = baseUrl + "auth/register";
     public static string registerFull = baseUrl + "auth/register-full";

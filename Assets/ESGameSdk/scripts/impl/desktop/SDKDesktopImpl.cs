@@ -506,4 +506,17 @@ public class SDKDesktopImpl : ISDK, IAppsFlyerConversionData
         Debug.Log("startInGameMain");
         ESGameSDK.instance.esInGameContainer.show();
     }
+
+    public void deleteAccount()
+    {
+        Debug.Log("startInGameMain");
+        showFloatingView(true);
+        new ESRevokeAccessHttp().execute(gameSDK, complete: (configResponse) =>
+        {
+            showFloatingView(false);
+        }, (code, message) =>
+        {
+            showFloatingView(false);
+        });
+    }
 }

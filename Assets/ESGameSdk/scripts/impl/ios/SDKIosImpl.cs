@@ -10,6 +10,8 @@ public class SDKIosImpl : ISDK
     [DllImport("__Internal")]
     private static extern void _startInGameMain();
     [DllImport("__Internal")]
+    private static extern void _deleteAccount();
+    [DllImport("__Internal")]
     private static extern void _setFloatingButtonEnable(bool floatingButtonEnable);
     [DllImport("__Internal")]
     private static extern void _billing(string productId, string serverId, string playerId, string extra);
@@ -176,6 +178,11 @@ public class SDKIosImpl : ISDK
     public string getClientSecret()
     {
         return config.clientSecretAndroid;
+    }
+
+    public void deleteAccount()
+    {
+        _deleteAccount();
     }
 
     public void setConfig(string appsflyerDevKey, int clientId, string clientSecret, string ggId)

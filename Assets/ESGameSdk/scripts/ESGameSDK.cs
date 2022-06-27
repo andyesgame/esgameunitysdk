@@ -245,6 +245,10 @@ public class ESGameSDK : ConfigLoader,ISDK
         sdk.trackingEvent(eventName, prs);
     }
 
+    public void deleteAccount()
+    {
+        sdk.deleteAccount();
+    }
     public void setFloatingButtonEnable(bool floatingButtonEnable)
     {
         sdk.setFloatingButtonEnable(floatingButtonEnable);

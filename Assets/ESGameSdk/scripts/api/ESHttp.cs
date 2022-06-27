@@ -22,10 +22,15 @@ public abstract class ESHttp<R,T> where R:ESResponse<T>,new()
         this.error = error;
         Debug.LogError("start  execute " + url);
         UnityWebRequest request = onExecute(url,input);
+        onConfigRequest(request);
         Debug.LogError("start  corotuine " + request.url);
         script.StartCoroutine(executeRequest(request,complete,error));
     }
 
+    protected virtual void onConfigRequest(UnityWebRequest request)
+    {
+
+    }
     public void execute(MonoBehaviour script)
     {
         this.execute(script, null, null);

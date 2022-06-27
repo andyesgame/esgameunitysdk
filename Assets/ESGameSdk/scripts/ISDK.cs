@@ -9,6 +9,7 @@ public interface ISDK
     void login();
     void logOut();
     void startInGameMain();
+    void deleteAccount();
     ESUser getCurrentUser();
     void onLoginSuccess(string data);
     void onLoginFailure(string data);

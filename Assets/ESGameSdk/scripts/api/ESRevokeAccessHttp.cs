@@ -2,19 +2,17 @@
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class ESSettingHttp : ESGetHttp<ESConfigResponse,ESConfig>
+public class ESRevokeAccessHttp : ESGetHttp<ESConfigResponse,ESConfig>
 {
-    public ESSettingHttp() : base(ApiConfig.setting, new string[0])
+    public ESRevokeAccessHttp() : base(ApiConfig.revokeAccess, new string[0])
     {
        
     }
 
     protected override string onConfigRequest(string url, object[] input)
     {
-        return url + "?" + "client_id=" + ESGameSDK.instance.getClientId();
+        return url;
     }
-
-
     protected override void onConfigRequest(UnityWebRequest request)
     {
         base.onConfigRequest(request);
