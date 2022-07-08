@@ -16,7 +16,7 @@
 +(void)initProducts:(NSString *) productString;
 +(void)setDeviceManagement:(NSString *) deviceId;
 +(void)billing:(NSString *) productId :(NSString *)serverId :(NSString *)playerId :(NSString *)extraData ;
-+(void)config:(NSString *) appsflyerId :(NSString *)clientId :(NSString *)clientSecret :(NSString *)ggId ;
++(void)config:(NSString *) appsflyerId :(NSString *)clientId :(NSString *)clientSecret :(NSString *)ggId :(NSString *)appleId;
 @end
 
 #endif /* ESioPlugin_h */

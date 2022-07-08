@@ -12,7 +12,6 @@ public class DemoScript : MonoBehaviour
     void Start()
     {
         Debug.Log("start ");
-        Screen.orientation = ScreenOrientation.LandscapeLeft;
         /**
          * set it if you wwant open esgame auto login behavior or not
          */

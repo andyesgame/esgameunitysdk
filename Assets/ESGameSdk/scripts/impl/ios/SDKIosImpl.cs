@@ -153,7 +153,11 @@ public class SDKIosImpl : ISDK
         usr = null;
         gameSDK.loginFailureEvent?.Invoke(ev);
     }
-
+    public void onDeleteUserCallback(string data)
+    {
+        DeleteAccountCallbackObject obj = JsonUtility.FromJson<DeleteAccountCallbackObject>(data);
+        gameSDK.deleteAccountEvent?.Invoke(obj);
+    }
     public void onLogout(string data)
     {
         gameSDK.logOutEvent?.Invoke();

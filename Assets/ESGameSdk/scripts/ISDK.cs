@@ -16,6 +16,7 @@ public interface ISDK
     void onLogout(string data);
     void onBillingResult(string data);
     void onWebBillingResult(string data);
+    void onDeleteUserCallback(string data);
     void checkSession(bool requireConfig = true);
     void billing(string productId, string serverId, string playerId, string extra);
     void webBilling(string productId, string serverId, string playerId, string extra);

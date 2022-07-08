@@ -2,16 +2,16 @@
     "schemaStandAlone": "",
     "clientIdAndroid": "1",
     "clientSecretAndroid": "",
-    "clientIdIos": "2",
-    "clientSecretIos": "",
-    "fbId": "",
-    "fbClientToken": "",
-    "ggClientIdIos": "",
+    "clientIdIos": "21",
+    "clientSecretIos": "yUIApjYIkISCfiARblN4rvB3WWQtmAxHmILEXOJv",
+    "fbId": "3576305309073403",
+    "fbClientToken": "d3f2cd9959e8edb1983e2233ff39435f",
+    "ggClientIdIos": "812939927546-o34tcvnptqp3qf3tabhetdb7j1fp02ev.apps.googleusercontent.com",
     "ggClientIdAndroid": "",
     "appFlyerKey": "",
     "appFlyerAndroidId": "",
     "appFlyerIosId": "",
     "appFlyerWindowId": "",
-    "appleId": ""
+    "appleId": "1584592160"
 
 }

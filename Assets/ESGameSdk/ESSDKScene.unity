@@ -14028,6 +14028,9 @@ MonoBehaviour:
   billingWebEvent:
     m_PersistentCalls:
       m_Calls: []
+  deleteAccountEvent:
+    m_PersistentCalls:
+      m_Calls: []
   uiEvent:
     m_PersistentCalls:
       m_Calls: []

@@ -471,7 +471,9 @@ public class SDKDesktopImpl : ISDK, IAppsFlyerConversionData
     {
        
     }
-
+    public void onDeleteUserCallback(string data)
+    {
+    }
     public void onLogout(string data)
     {
        

@@ -29,6 +29,11 @@ public class ESWebBillingEvent : UnityEvent<ESBillingWebResult>
 }
 
 [Serializable]
+public class ESDeleteAccountEvent : UnityEvent<DeleteAccountCallbackObject>
+{
+}
+
+[Serializable]
 public class ESUIEvent : UnityEvent<Boolean>
 {
 }
@@ -100,6 +105,7 @@ public class ESGameSDK : ConfigLoader,ISDK
     public ESLogOutEvent logOutEvent;
     public ESBillingEvent billingEvent;
     public ESWebBillingEvent billingWebEvent;
+    public ESDeleteAccountEvent deleteAccountEvent;
     public ESUIEvent uiEvent;
     private ISDK sdk;
     
@@ -213,6 +219,11 @@ public class ESGameSDK : ConfigLoader,ISDK
     public void onLogout(string data)
     {
         sdk.onLogout(data);
+    }
+
+    public void onDeleteUserCallback(string data)
+    {
+        sdk.onDeleteUserCallback(data);
     }
 
     public void onBillingResult(string data)

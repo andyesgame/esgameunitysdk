@@ -32,9 +32,7 @@ ESioPlugin *obj;
 }
 
 +(void)deleteAccount{
-    [[ESGameSDK sharedObject] deleteAccount:^(bool ok) {
-        
-    }];
+    [[ESGameSDK sharedObject] deleteAccount];
 }
 +(void)billing:(NSString *) productId :(NSString *)serverId :(NSString *)playerId :(NSString *)extraData {
     [[ESGameSDK sharedObject]buyProduct:productId :serverId :playerId :extraData :UnityGetGLViewController()];
@@ -91,6 +89,7 @@ ESioPlugin *obj;
          @property (nonatomic) NSString *provider;
          @property (nonatomic) bool is_new;
          */
+        NSString *type = user.loginType;
         NSDictionary *userDict = @{
             @"id":@(user.id),
             @"name":user.name,
@@ -103,6 +102,7 @@ ESioPlugin *obj;
             @"national_id":user.national_id,
             @"phone":user.phone,
             @"provider":user.provider,
+            @"loginType":type,
             @"is_new":@(user.is_new)
             
         };
@@ -127,6 +127,19 @@ ESioPlugin *obj;
   printf("----------------callback--logout");
     UnitySendMessage("ESSceneCanvas", "onLogout", "");
 }
+
++ (void)deleteUserCallback:(BOOL)isSuccess {
+    bool status = isSuccess == 1?true:false;
+    NSDictionary *dict = @{
+        @"status":@(status)
+    };
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    UnitySendMessage("ESSceneCanvas", "onDeleteUserCallback", [jsonString UTF8String]);
+}
 +(void)paymentSuccess:(SKPaymentTransaction*)transaction{
     NSLog(@"buyProduct return: %@", transaction.payment.productIdentifier);
     NSDictionary *dict = @{
@@ -141,7 +154,6 @@ ESioPlugin *obj;
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     UnitySendMessage("ESSceneCanvas", "onBillingResult", [jsonString UTF8String]);
 }
-
 
 @end
  

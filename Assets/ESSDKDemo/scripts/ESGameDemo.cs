@@ -18,8 +18,14 @@ public class ESGameDemo : MonoBehaviour
         ESGameSDK.instance.billingEvent.AddListener(ESBillingEvent);
         ESGameSDK.instance.billingWebEvent.AddListener(ESBillingWebEvent);
         ESGameSDK.instance.uiEvent.AddListener(this.ESUIEvent);
+        ESGameSDK.instance.deleteAccountEvent.AddListener(this.ESDeleteAccountEvent);
 
         ESGameSDK.instance.startInGameMain();
+    }
+
+    private void ESDeleteAccountEvent(DeleteAccountCallbackObject arg0)
+    {
+        status.text += string.Format("ESDeleteAccountEvent {0}", arg0.status) + "\n";
     }
 
     private void ESBillingWebEvent(ESBillingWebResult arg0)

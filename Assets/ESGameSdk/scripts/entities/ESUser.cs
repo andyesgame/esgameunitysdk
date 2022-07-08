@@ -1,7 +1,14 @@
 ﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using UnityEngine;
-
 [Serializable]
+public enum LoginType
+{
+    Normal, Fast, Google, Facebook, Apple
+}
+
+    [Serializable]
 public class ESUser
 {
     public int id;
@@ -16,6 +23,25 @@ public class ESUser
     public string phone;
     public string provider;
     public bool is_new;
+    public string loginType;
+
+    
+    public LoginType getLoginType()
+    {
+        if(loginType == null)
+        {
+            return LoginType.Normal;
+        }
+        try
+        {
+            return (LoginType)Enum.Parse(typeof(LoginType), loginType, true);
+        }
+        catch(Exception e)
+        {
+            return LoginType.Normal;
+        }
+    }
+    
 
     internal bool isUserDevice()
     {

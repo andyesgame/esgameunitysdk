@@ -124,7 +124,11 @@ public class SDKAndroidImpl : ISDK
         usr = loginSuccessData.user;
         gameSDK.loginSuccessEvent?.Invoke(usr);
     }
-
+    public void onDeleteUserCallback(string data)
+    {
+        DeleteAccountCallbackObject obj = JsonUtility.FromJson<DeleteAccountCallbackObject>(data);
+        gameSDK.deleteAccountEvent?.Invoke(obj);
+    }
     public void onLoginFailure(string data)
     {
         ESErrorEvent ev = JsonUtility.FromJson<ESErrorEvent>(data);
