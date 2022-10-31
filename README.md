@@ -39,7 +39,20 @@ SDK provide some functionality below:
 - Analystic ( Firebase, Facebook, Appslyer)
 
 # SDK Config
+## AndroidManifest.xml
+ESGame use no action bar style, so you should use ESGameAppTheme, in application tag, should use style :
 
+	android:theme="@style/ESGameAppTheme"
+	
+or declare your app theme with following attributes:
+
+	    <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+	
 ## /Assets/esgconfig/esg_config.json
 Create or modify esg_config.json and put it to  /Assets/esgconfig  folder, then asign it to config file property in ESGameSDK script inside /Assets/ESGameSdk/ESSDKScene
 ESGame has few parameters
