@@ -15,6 +15,7 @@ public class ESMainView : ESBaseView
     public VerticalLayoutGroup group;
     private bool socialLogin;
     private string uuid;
+    private string currentProvider;
     // Use this for initialization
     void Start()
     {
@@ -105,7 +106,7 @@ public class ESMainView : ESBaseView
         if(arg0.code == 200)
         {
             container.showLoading(true);
-
+            currentProvider = arg0.data.provider;
             new ESSocialLoginHttp(arg0.data.token, arg0.data.provider).execute(this, this.socialLoginSuccess, this.socialLoginFail);
         }
         else
@@ -126,7 +127,22 @@ public class ESMainView : ESBaseView
         container.showLoading(false);
         socialLogin = false;
         uuid = null;
+        arg0.data.user.loginType = getLoginTypeFromProvider(currentProvider);
         ((SDKDesktopImpl)ESGameSDK.instance.GetSDK()).DispatchLoginSuccess(arg0);
+    }
+
+    private string getLoginTypeFromProvider(string provider)
+    {
+        switch (provider)
+        {
+            case "facebook":
+                return LoginType.Facebook.ToString();
+            case "google":
+                return LoginType.Google.ToString();
+            case "apple":
+                return LoginType.Apple.ToString();
+        }
+        return null;
     }
 
     public void onClickGoogle()
@@ -191,6 +207,7 @@ public class ESMainView : ESBaseView
     private void onApiFastLoginSuccess(ESLoginResponse arg0)
     {
         container.showLoading(false);
+        arg0.data.user.loginType = LoginType.Fast.ToString();
         ((SDKDesktopImpl)ESGameSDK.instance.GetSDK()).DispatchLoginSuccess(arg0);
     }
 

@@ -1,7 +1,64 @@
-/**
- Should replace this file
-*/
 {
-    
-  "configuration_version": "1"
+    "project_info": {
+        "project_number": "1034628364602",
+        "firebase_url": "https://esgame-bltt-293803.firebaseio.com",
+        "project_id": "esgame-bltt-293803",
+        "storage_bucket": "esgame-bltt-293803.appspot.com"
+    },
+    "client": [
+        {
+            "client_info": {
+                "mobilesdk_app_id": "1:1034628364602:android:6397c6efcee3279b477803",
+                "android_client_info": {
+                    "package_name": "vn.esgame.bachluyenthanhthan"
+                }
+            },
+            "oauth_client": [
+                {
+                    "client_id": "1034628364602-8dima8ji9d5hjkh3mq1qmjcackfrhunk.apps.googleusercontent.com",
+                    "client_type": 1,
+                    "android_info": {
+                        "package_name": "vn.esgame.bachluyenthanhthan",
+                        "certificate_hash": "dbe90bf32b81d259489b59a88d36963662060b4e"
+                    }
+                },
+                {
+                    "client_id": "1034628364602-lf60ieaf0odubuag8a9nbrl36251ine4.apps.googleusercontent.com",
+                    "client_type": 1,
+                    "android_info": {
+                        "package_name": "vn.esgame.bachluyenthanhthan",
+                        "certificate_hash": "a22e6e2e2672d6a4e27166a83e4dec165792ea7c"
+                    }
+                },
+                {
+                    "client_id": "1034628364602-k95psg8p6m6bse4elkdbt5cvbvgv3p29.apps.googleusercontent.com",
+                    "client_type": 3
+                }
+            ],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyBJrMMkFcTqfQ0DHzm4IUCJyKYTzra2Tgs"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": [
+                        {
+                            "client_id": "1034628364602-k95psg8p6m6bse4elkdbt5cvbvgv3p29.apps.googleusercontent.com",
+                            "client_type": 3
+                        },
+                        {
+                            "client_id": "1034628364602-0sbkc4vbcrp2uj1cpedbfroj8f89vv51.apps.googleusercontent.com",
+                            "client_type": 2,
+                            "ios_info": {
+                                "bundle_id": "vn.esgame.bltt",
+                                "app_store_id": "1537224599"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "configuration_version": "1"
 }

@@ -75,6 +75,7 @@ public class ESGameDemo : MonoBehaviour
         string serverId = "1";
         string playerId = "1";
         string extra = "213";
+        Debug.Log("ESGameSDK.instance.getProducts(). product id  " + productId);
         ESGameSDK.instance.billing(productId, serverId, playerId, extra);
     }
 
@@ -91,7 +92,7 @@ public class ESGameDemo : MonoBehaviour
             return;
         }
 
-        string serverId = "test";
+        string serverId = "1";
         string playerId = "1";
         string extra = "213";
         ESGameSDK.instance.webBilling(productId, serverId, playerId, extra);

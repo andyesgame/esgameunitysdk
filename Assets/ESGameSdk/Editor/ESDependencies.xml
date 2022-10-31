@@ -26,7 +26,7 @@
     <androidPackage spec="com.squareup.retrofit2:adapter-rxjava:2.3.0" />
     <androidPackage spec="com.github.bumptech.glide:glide:3.7.0" />
     <androidPackage spec="com.facebook.android:facebook-android-sdk:11.0.0" />
-    <androidPackage spec="com.android.billingclient:billing:3.0.3" />
+    <androidPackage spec="com.android.billingclient:billing:5.0.0" />
     <androidPackage spec="com.google.firebase:firebase-core:19.0.0" />
     <androidPackage spec="com.google.firebase:firebase-auth:21.0.1" />
     <androidPackage spec="com.google.android.gms:play-services-auth:15.0.1" />

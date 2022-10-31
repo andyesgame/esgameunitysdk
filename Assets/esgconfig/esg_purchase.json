@@ -1,10 +1,10 @@
 {
 
-    "iosComsumables":[],
-    "ggComsumables": [ "package_2" ],
+    "iosComsumables": [ "vn.esgame.bltt_ios_gold_00022" ],
+    "ggComsumables": [ "vn.esgame.bltt_gp_gold_00022" ],
     "iosNonComsumables": [],
     "ggNonComsumables": [],
     "iosSubscriptions": [ "product_3" ],
     "ggSubscriptions" : [],
-    "webs": [ "android.test.purchased" ]
+    "webs": [ "vn.esgame.bltt_web_gold_00020" ]
 }

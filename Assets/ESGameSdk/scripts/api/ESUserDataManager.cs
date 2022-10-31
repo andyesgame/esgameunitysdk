@@ -37,13 +37,17 @@ public class ESUserDataManager
             && !eSUser.provider.Equals("google")&&!eSUser.provider.Equals("facebook")
             && !eSUser.provider.Equals("apple"))
         PlayerPrefs.SetString("es_normal_user_id", eSUser.name);
+        PlayerPrefs.SetString("es_user_login_type", eSUser.loginType);
         PlayerPrefs.Save();
     }
     public static string getESUserString()
     {
         return PlayerPrefs.GetString("es_normal_user_id");
     }
-   
+    public static string getESUserLoginType()
+    {
+        return PlayerPrefs.GetString("es_user_login_type");
+    }
     internal static void logOut()
     {
         PlayerPrefs.SetString("es_access_token", null);

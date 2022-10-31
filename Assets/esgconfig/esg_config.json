@@ -1,17 +1,17 @@
 {
     "schemaStandAlone": "",
-    "clientIdAndroid": "1",
-    "clientSecretAndroid": "",
-    "clientIdIos": "21",
-    "clientSecretIos": "yUIApjYIkISCfiARblN4rvB3WWQtmAxHmILEXOJv",
-    "fbId": "3576305309073403",
-    "fbClientToken": "d3f2cd9959e8edb1983e2233ff39435f",
+    "clientIdAndroid": "13",
+    "clientSecretAndroid": "QY4t2HJy4jdv4aTZp2a4zqC5cqy1X0MQpZs9f0Q7",
+    "clientIdIos": "14",
+    "clientSecretIos": "nAHXbioNr9PQKXCuTcpeQL4vf4H4ufJMi33VK3u5",
+    "fbId": "682118789108627",
+    "fbClientToken": "46279ca7ff8ee5da2b000eb2156f1962",
     "ggClientIdIos": "812939927546-o34tcvnptqp3qf3tabhetdb7j1fp02ev.apps.googleusercontent.com",
-    "ggClientIdAndroid": "",
+    "ggClientIdAndroid": "1034628364602-k95psg8p6m6bse4elkdbt5cvbvgv3p29.apps.googleusercontent.com",
     "appFlyerKey": "",
     "appFlyerAndroidId": "",
     "appFlyerIosId": "",
     "appFlyerWindowId": "",
-    "appleId": "1584592160"
+    "appleId": "1537224599"
 
 }

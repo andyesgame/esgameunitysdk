@@ -153,9 +153,9 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.userjoy.sgc.vinn
+    Android: vn.esgame.bachluyenthanhthan
     Standalone: com.Company.ProductName
-    iPhone: com.userjoy.sgc.vinn
+    iPhone: vn.esgame.bltt
   buildNumber:
     Standalone: 0
     iPhone: 0
@@ -248,15 +248,15 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: 
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: /Users/esgame/work/ESG/essdkandroid/essdk/app/key/ESGame-BachLuyenThanhThan.keystore
+  AndroidKeyaliasName: bachluyenthanhthan
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
   AndroidEnableTango: 0
   androidEnableBanner: 1
   androidUseLowAccuracyLocation: 0
-  androidUseCustomKeystore: 0
+  androidUseCustomKeystore: 1
   m_AndroidBanners:
   - width: 320
     height: 180

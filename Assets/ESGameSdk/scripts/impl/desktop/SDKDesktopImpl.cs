@@ -125,6 +125,7 @@ public class SDKDesktopImpl : ISDK, IAppsFlyerConversionData
         if (arg0.code == ApiConfig.SUCCESS)
         {
             var usr = arg0.data.user;
+            usr.loginType = ESUserDataManager.getESUserLoginType();
             DispatchLoginSuccess(arg0);
 
         }

@@ -161,6 +161,7 @@ public class ESRegisterView : ESBaseView
     private void onApiSuccess(ESLoginResponse arg0)
     {
         container.showLoading(false);
+        arg0.data.user.loginType = LoginType.Normal.ToString();
         ((SDKDesktopImpl)ESGameSDK.instance.GetSDK()).DispatchLoginSuccess(arg0);
     }
 
