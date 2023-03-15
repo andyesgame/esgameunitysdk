@@ -27,6 +27,8 @@ public class SDKIosImpl : ISDK
     private static extern void _trackingEvent(string eventName, string data);
     [DllImport("__Internal")]
     private static extern void _setDeviceManagement(string deviceId);
+    [DllImport("__Internal")]
+    private static extern void _retreiveFirebaseMessaingToken();
     public ESGameSDK gameSDK;
 
 
@@ -202,6 +204,16 @@ public class SDKIosImpl : ISDK
     public void setDeviceManagement(string deviceId)
     {
         _setDeviceManagement(deviceId);
+    }
+
+    public void retreiveFirebaseMessaingToken()
+    {
+        _retreiveFirebaseMessaingToken();
+    }
+
+    public void onFireBaseTokenChange(string token)
+    {
+        gameSDK.firebaseMsgEvent?.Invoke(token);
     }
 }
 #endif

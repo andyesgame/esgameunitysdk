@@ -140,6 +140,13 @@ ESioPlugin *obj;
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     UnitySendMessage("ESSceneCanvas", "onDeleteUserCallback", [jsonString UTF8String]);
 }
++(void)retreiveFirebaseMessaingToken{
+    [[ESGameSDK sharedObject] retreiveFirebaseMessaingToken];
+}
++(void)onFireBaseTokenChange:(NSString*)token{
+    NSLog(@"bonFireBaseTokenChange: %@", token);
+    UnitySendMessage("ESSceneCanvas", "onFireBaseTokenChange", [token UTF8String]);
+}
 +(void)paymentSuccess:(SKPaymentTransaction*)transaction{
     NSLog(@"buyProduct return: %@", transaction.payment.productIdentifier);
     NSDictionary *dict = @{
@@ -265,4 +272,10 @@ ESioPlugin *obj;
          // calls the method to display our view controller over the unity controller
          //[[ESioPlugin singleton] loadWebViewUrl:murl :mtitle];
      }
- }  // end of extern C block
+ 
+void _retreiveFirebaseMessaingToken()
+    {
+        [ESioPlugin retreiveFirebaseMessaingToken];
+    }
+ }
+// end of extern C block

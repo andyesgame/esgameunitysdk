@@ -230,5 +230,21 @@ public class SDKAndroidImpl : ISDK
             }
         }
     }
+
+    public void retreiveFirebaseMessaingToken()
+    {
+            using (AndroidJavaClass cls_UnityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+            {
+                using (AndroidJavaObject obj_Activity = cls_UnityPlayer.GetStatic<AndroidJavaObject>("currentActivity"))
+                {
+                    obj_Activity.Call("retreiveFirebaseMessaingToken");
+                }
+            }
+    }
+
+    public void onFireBaseTokenChange(string token)
+    {
+        gameSDK.firebaseMsgEvent?.Invoke(token);
+    }
 }
 #endif

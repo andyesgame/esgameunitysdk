@@ -13,6 +13,7 @@
 +(void)checkSession;
 +(void)startInGameMain;
 +(void)deleteAccount;
++(void)retreiveFirebaseMessaingToken;
 +(void)initProducts:(NSString *) productString;
 +(void)setDeviceManagement:(NSString *) deviceId;
 +(void)billing:(NSString *) productId :(NSString *)serverId :(NSString *)playerId :(NSString *)extraData ;

@@ -38,6 +38,11 @@ public class ESUIEvent : UnityEvent<Boolean>
 {
 }
 
+
+[Serializable]
+public class ESFirebaseMsgEvent : UnityEvent<String>
+{
+}
 [Serializable]
 public class ESErrorEvent
 {
@@ -107,6 +112,7 @@ public class ESGameSDK : ConfigLoader,ISDK
     public ESWebBillingEvent billingWebEvent;
     public ESDeleteAccountEvent deleteAccountEvent;
     public ESUIEvent uiEvent;
+    public ESFirebaseMsgEvent firebaseMsgEvent;
     private ISDK sdk;
     
 
@@ -263,5 +269,15 @@ public class ESGameSDK : ConfigLoader,ISDK
     public void setFloatingButtonEnable(bool floatingButtonEnable)
     {
         sdk.setFloatingButtonEnable(floatingButtonEnable);
+    }
+
+    public void retreiveFirebaseMessaingToken()
+    {
+        sdk.retreiveFirebaseMessaingToken();
+    }
+
+    public void onFireBaseTokenChange(string token)
+    {
+        sdk.onFireBaseTokenChange(token);
     }
 }

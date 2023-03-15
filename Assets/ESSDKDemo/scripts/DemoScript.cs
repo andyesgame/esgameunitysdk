@@ -39,10 +39,12 @@ public class DemoScript : MonoBehaviour
             ESGameSDK.instance.logOutEvent.AddListener(this.onUserSignOut);
             ESGameSDK.instance.billingEvent.AddListener(this.ESBillingEvent);
             ESGameSDK.instance.uiEvent.AddListener(this.ESUIEvent);
+            ESGameSDK.instance.firebaseMsgEvent.AddListener(this.ESFirebaseEvent);
             /**
              * Open login behavio , if usser token is available then sdk wwil notify login success event,.
              * If user tojen is unavailble then sdk wil open login view
              */
+            ESGameSDK.instance.retreiveFirebaseMessaingToken();
             ESGameSDK.instance.login();
         }
         else
@@ -51,6 +53,10 @@ public class DemoScript : MonoBehaviour
         }
     }
 
+    private void ESFirebaseEvent(string token)
+    {
+        Debug.LogError("ESFirebaseEvent token " + token);
+    }
 
     private void ESUIEvent(bool changed)
     {

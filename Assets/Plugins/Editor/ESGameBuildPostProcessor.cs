@@ -50,6 +50,46 @@ public class ESGameBuildPostProcessor : IPostGenerateGradleAndroidProject
             rootDict.SetString("FacebookAppID", fbId);
             rootDict.SetString("FacebookClientToken", fbClientToken);
 
+            if (!rootDict.values.ContainsKey("LSApplicationQueriesSchemes"))
+            {
+                PlistElementArray schemas = rootDict.CreateArray("LSApplicationQueriesSchemes");
+                schemas.AddString("fbapi");
+                schemas.AddString("fbapi20130214");
+                schemas.AddString("fbapi20130410");
+                schemas.AddString("fbapi20130702");
+                schemas.AddString("fbapi20131010");
+                schemas.AddString("fbapi20131219");
+                schemas.AddString("fbapi20140410");
+                schemas.AddString("fbapi20140116");
+                schemas.AddString("fbapi20150313");
+                schemas.AddString("fbapi20150629");
+                schemas.AddString("fbapi20160328");
+                schemas.AddString("fbauth");
+                schemas.AddString("fb-messenger-share-api");
+                schemas.AddString("fbauth2");
+                schemas.AddString("fbshareextension");
+            }
+            else
+            {
+                PlistElementArray schemas = rootDict.values["LSApplicationQueriesSchemes"].AsArray();
+                checkAndAdd(schemas, "fbapi");
+                checkAndAdd(schemas, "fbapi20130214");
+                checkAndAdd(schemas, "fbapi20130410");
+                checkAndAdd(schemas, "fbapi20130702");
+                checkAndAdd(schemas, "fbapi20131010");
+                checkAndAdd(schemas, "fbapi20131219");
+                checkAndAdd(schemas, "fbapi20140410");
+                checkAndAdd(schemas, "fbapi20140116");
+                checkAndAdd(schemas, "fbapi20150313");
+                checkAndAdd(schemas, "fbapi20150629");
+                checkAndAdd(schemas, "fbapi20160328");
+                checkAndAdd(schemas, "fbauth");
+                checkAndAdd(schemas, "fbapi");
+                checkAndAdd(schemas, "fbauth2");
+                checkAndAdd(schemas, "fbshareextension");
+                checkAndAdd(schemas, "fb-messenger-share-api");
+            }
+
             if (!rootDict.values.ContainsKey("CFBundleURLTypes"))
             {
                 PlistElementArray urlType = rootDict.CreateArray("CFBundleURLTypes");
@@ -109,11 +149,47 @@ public class ESGameBuildPostProcessor : IPostGenerateGradleAndroidProject
 
             string guid = getTargetId(proj);
             proj.AddFrameworkToProject(guid, "AppTrackingTransparency.framework", false);
+            //setupBitcode(proj);
 
             proj.WriteToFile(pbxFilename);
             Debug.Log("Info.plist updated with AppsFlyerShouldSwizzle");
         }
 
+    }
+    private static void setupBitcode(PBXProject project)
+    {
+        setupBitcode(project, project.TargetGuidByName("AppAuth"));
+    }
+
+    private static void setupBitcodeFramework(PBXProject project)
+    {
+        setupBitcode(project, project.GetUnityFrameworkTargetGuid());
+    }
+
+    private static void setupBitcodeMain(PBXProject project)
+    {
+        setupBitcode(project, project.GetUnityMainTargetGuid());
+    }
+
+    private static void setupBitcode(PBXProject project, string targetGUID)
+    {
+        project.SetBuildProperty(targetGUID, "ENABLE_BITCODE", true ? "YES" : "NO");
+    }
+    private static void checkAndAdd(PlistElementArray array,string value)
+    {
+        bool match = false;
+        foreach(PlistElement e in array.values)
+        {
+            if (e.AsString().Equals(value))
+            {
+                match = true;
+                break;
+            }
+        }
+        if (!match)
+        {
+            array.AddString(value);
+        }
     }
 
     private static string getGGServiceAndroidPath(string path)

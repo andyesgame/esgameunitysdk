@@ -522,4 +522,11 @@ public class SDKDesktopImpl : ISDK, IAppsFlyerConversionData
             showFloatingView(false);
         });
     }
+    public void retreiveFirebaseMessaingToken()
+    {
+    }
+
+    public void onFireBaseTokenChange(string token)
+    {
+    }
 }

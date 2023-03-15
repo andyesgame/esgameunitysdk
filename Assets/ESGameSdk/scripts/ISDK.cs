@@ -25,5 +25,7 @@ public interface ISDK
     List<string> getWebProducts();
     string getClientId();
     string getClientSecret();
+    void retreiveFirebaseMessaingToken();
+    void onFireBaseTokenChange(String token);
 
 }
